@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SolderSolutions | Poort Reparatie & Tech Lab</title>
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
@@ -20,6 +23,7 @@
             background-color: var(--white);
             color: var(--dark);
             font-family: 'Poppins', sans-serif;
+            font-size: 17px;
             scroll-behavior: smooth;
         }
 
@@ -27,68 +31,78 @@
         #intro-overlay {
             position: fixed; inset: 0; background: #020617;
             display: flex; justify-content: center; align-items: center;
-            z-index: 9999; transition: 1s cubic-bezier(0.7, 0, 0.3, 1);
+            z-index: 9999; transition: 1s ease;
         }
         .hexagon {
-            width: 80px; height: 80px; background: var(--primary);
+            width: 100px; height: 100px; background: var(--primary);
             clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
             display: flex; justify-content: center; align-items: center;
-            font-size: 40px; font-weight: 800; color: white; transform: scale(0);
+            font-size: 50px; font-weight: 800; color: white;
             animation: popIn 0.8s forwards;
         }
-        @keyframes popIn { to { transform: scale(1); } }
-        .exit-active { transform: translateY(-100%); opacity: 0; }
+        @keyframes popIn { from { transform: scale(0); } to { transform: scale(1); } }
+        .exit-active { transform: translateY(-100%); }
 
-        /* --- NAV & HERO --- */
+        /* --- NAV --- */
         nav {
-            background: var(--white); padding: 15px 5%;
+            background: var(--white); padding: 25px 5%;
             display: flex; justify-content: space-between; align-items: center;
             position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #eee;
         }
-        .logo { font-weight: 800; font-size: 1.5rem; text-decoration: none; color: var(--dark); }
+        .logo { font-weight: 800; font-size: 1.8rem; text-decoration: none; color: var(--dark); }
         .logo span { color: var(--primary); }
 
+        /* --- HERO --- */
         .hero {
             background: var(--dark); color: var(--white); 
-            padding: 100px 20px; text-align: center;
+            padding: 120px 20px; text-align: center;
         }
-        .hero h1 { font-size: 3rem; font-weight: 800; margin: 0; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; margin: 0; }
 
-        .container { max-width: 1200px; margin: auto; padding: 60px 20px; }
+        .container { max-width: 1100px; margin: auto; padding: 80px 20px; }
+        
+        /* GROTE BESCHRIJVING */
+        .about-text {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto 80px;
+            line-height: 1.8;
+            font-size: 1.25rem;
+            color: #475569;
+        }
+
         .section-title { text-align: center; margin-bottom: 50px; }
-        .bar { width: 50px; height: 4px; background: var(--primary); margin: 15px auto; }
+        .bar { width: 70px; height: 6px; background: var(--primary); margin: 20px auto; }
 
-        /* --- DIENSTEN --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        /* DIENSTEN KAARTEN */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; }
         .card { 
-            background: var(--white); padding: 40px; border-radius: 20px; 
+            background: var(--white); padding: 50px 35px; border-radius: 30px; 
             border: 1px solid #e2e8f0; transition: 0.3s; text-align: center;
         }
         .card:hover { transform: translateY(-10px); border-color: var(--primary); }
-        .price-tag { font-size: 2.2rem; font-weight: 800; color: var(--primary); display: block; margin: 15px 0; }
+        .price-tag { font-size: 2.7rem; font-weight: 800; color: var(--primary); display: block; margin: 15px 0; }
 
-        /* --- REVIEWS (LEEG BIJ START) --- */
-        .review-section { background: var(--light); padding: 80px 20px; border-radius: 50px; margin: 40px 0; }
-        .review-card { background: white; padding: 30px; border-radius: 20px; border: 1px solid #e2e8f0; }
-        .stars { color: var(--gold); margin-bottom: 10px; }
-        
-        .no-reviews { text-align: center; color: #94a3b8; font-style: italic; grid-column: 1 / -1; }
+        /* REVIEWS */
+        .review-section { background: var(--light); padding: 100px 20px; border-radius: 60px; margin: 60px 0; }
+        .no-reviews { text-align: center; color: #94a3b8; font-style: italic; }
 
         .review-form {
-            background: #fff; padding: 30px; border-radius: 20px; 
-            margin-top: 40px; border: 2px dashed var(--primary);
+            background: #fff; padding: 45px; border-radius: 30px; 
+            margin-top: 50px; border: 2px dashed var(--primary);
         }
 
-        /* --- GARANTIE --- */
-        .garantie-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center; }
+        /* GARANTIE */
+        .garantie-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 45px; text-align: center; }
 
-        /* FORM STYLING */
+        /* KNOPPEN & INPUTS */
         input, select, textarea {
-            width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: 1px solid #ddd; font-family: inherit; box-sizing: border-box;
+            width: 100%; padding: 20px; margin-bottom: 20px; border-radius: 15px; border: 1px solid #ddd; font-family: inherit; font-size: 1.1rem; box-sizing: border-box;
         }
-        .btn { background: var(--primary); color: white; border: none; padding: 18px; width: 100%; border-radius: 10px; font-weight: 700; cursor: pointer; }
+        .btn { background: var(--primary); color: white; border: none; padding: 22px; width: 100%; border-radius: 15px; font-weight: 800; font-size: 1.2rem; cursor: pointer; transition: 0.2s; }
+        .btn:hover { background: #ea580c; transform: scale(1.02); }
 
-        footer { text-align: center; padding: 40px; opacity: 0.6; }
+        footer { text-align: center; padding: 60px; opacity: 0.5; font-size: 1rem; }
     </style>
 </head>
 <body>
@@ -96,37 +110,49 @@
     <div id="intro-overlay">
         <div id="intro-box">
             <div class="hexagon">S</div>
-            <div id="intro-text" style="color:white; font-size: 1.5rem; font-weight: 800; margin-top: 20px;"></div>
+            <div id="intro-text" style="color:white; font-size: 1.8rem; font-weight: 800; margin-top: 25px;"></div>
         </div>
     </div>
 
     <nav>
         <a href="#" class="logo">SOLDER<span>SOLUTIONS</span></a>
-        <div style="font-weight: 600;">Lunteren, NL</div>
+        <div style="font-weight: 700; color: var(--primary);">Lunteren, NL</div>
     </nav>
 
     <section class="hero">
-        <h1>High-End Poort Reparatie</h1>
-        <p>Expert herstel vanaf €39,95</p>
+        <h1>SolderSolutions</h1>
+        <p style="font-size: 1.5rem; opacity: 0.9;">Hardware Precision Lab</p>
     </section>
 
     <div class="container">
         
+        <div class="about-text">
+            <p><strong>SolderSolutions</strong> is hét adres in Lunteren voor vakkundige micro-reparaties. Wij herstellen complexe hardware-defecten waar anderen stoppen. Van afgebroken <strong>HDMI 2.1 poorten</strong> tot het modificeren van controllers met <strong>Hall-Effect sensoren</strong>; wij brengen jouw tech weer tot leven met uiterste precisie.</p>
+        </div>
+
         <div class="section-title">
-            <h2>Diensten</h2>
+            <h2>Onze Diensten</h2>
             <div class="bar"></div>
         </div>
+
         <div class="grid">
             <div class="card">
-                <h3>🔌 Alle Poorten</h3>
+                <span style="font-size: 3.5rem;">🔌</span>
+                <h3>Poort Reparatie</h3>
                 <span class="price-tag">v.a. €39,95</span>
-                <p>HDMI, USB-C, Audio & meer.</p>
-            </div>
+                <p>HDMI, USB-C & Audio poorten voor consoles, laptops en controllers.</p>
             </div>
             <div class="card">
-                <h3>🤖 Arduino Lab</h3>
+                <span style="font-size: 3.5rem;">🎮</span>
+                <h3>Controller Mods</h3>
+                <span class="price-tag">€29,95</span>
+                <p>Geen last meer van stickdrift met onze Hall-Effect sensor upgrades.</p>
+            </div>
+            <div class="card">
+                <span style="font-size: 3.5rem;">🤖</span>
+                <h3>Custom Tech</h3>
                 <span class="price-tag">v.a. €24,95</span>
-                <p>Custom tech projecten.</p>
+                <p>Arduino projecthulp, PCB herstel en maatwerk soldeerwerk.</p>
             </div>
         </div>
 
@@ -135,39 +161,37 @@
                 <h2>Wat klanten zeggen</h2>
                 <div class="bar"></div>
             </div>
-
-            <div class="grid" id="review-container">
-                <p class="no-reviews">Nog geen reviews. Wees de eerste!</p>
+            <div id="review-container">
+                <p class="no-reviews">Er zijn nog geen reviews. Help ons en wees de eerste!</p>
             </div>
-
-            <div class="review-form" id="review-form">
-                <h3>Schrijf een review</h3>
+            <div class="review-form">
+                <h3>Schrijf een echte review</h3>
                 <form action="https://formspree.io/f/jouw-code-hier" method="POST">
                     <input type="text" name="naam" placeholder="Je Naam" required>
                     <select name="sterren">
-                        <option value="5">★★★★★</option>
-                        <option value="4">★★★★☆</option>
+                        <option value="5">★★★★★ (5 sterren)</option>
+                        <option value="4">★★★★☆ (4 sterren)</option>
                     </select>
-                    <textarea name="bericht" placeholder="Jouw ervaring..." rows="3" required></textarea>
-                    <button type="submit" class="btn">VERSTUUR REVIEW</button>
+                    <textarea name="bericht" placeholder="Hoe heb ik je geholpen?" rows="3" required></textarea>
+                    <button type="submit" class="btn">REVIEW VERSTUREN</button>
                 </form>
             </div>
         </div>
 
         <div class="section-title">
-            <h2>Garantie & Zekerheid</h2>
+            <h2>Jouw Zekerheid</h2>
             <div class="bar"></div>
         </div>
         <div class="garantie-grid">
-            <div><span style="font-size:3rem;">🛡️</span><h4>6 Maanden Garantie</h4></div>
-            <div><span style="font-size:3rem;">🔍</span><h4>No Fix, No Fee</h4></div>
-            <div><span style="font-size:3rem;">⚡</span><h4>Snelle Service</h4></div>
+            <div><span style="font-size:4rem;">🛡️</span><h4>6 Maanden Garantie</h4></div>
+            <div><span style="font-size:4rem;">🔍</span><h4>No Fix, No Fee</h4></div>
+            <div><span style="font-size:4rem;">⚡</span><h4>Snelle Service</h4></div>
         </div>
 
     </div>
 
     <footer>
-        &copy; 2026 SolderSolutions | Lunteren
+        &copy; 2026 SolderSolutions | Lunteren | High-End Tech Repair
     </footer>
 
     <script>
