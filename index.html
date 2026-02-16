@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SolderSolutions | Premium Hardware Lab</title>
+    <title>SolderSolutions | Premium Tech Lab</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --bg: #020617;
-            --primary: #f97316; /* Warm Oranje */
-            --secondary: #38bdf8; /* Tech Blauw */
+            --primary: #f97316;
+            --secondary: #0ea5e9;
             --text: #f8fafc;
             --card-bg: #0f172a;
         }
@@ -21,279 +21,186 @@
             color: var(--text);
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-        /* --- HEXAGON INTRO ANIMATIE --- */
+        /* --- DE NIEUWE INTRO --- */
         #intro-overlay {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg);
+            inset: 0;
+            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
             display: flex; justify-content: center; align-items: center;
             z-index: 9999;
-            transition: all 1.2s cubic-bezier(0.85, 0, 0.15, 1);
+            transition: all 1s cubic-bezier(0.7, 0, 0.3, 1);
         }
 
         #intro-box {
-            background: var(--card-bg);
-            padding: 60px 80px;
-            border-radius: 40px; /* Rounded Edges */
-            border: 1px solid #1e293b;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: all 1s ease-in-out;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
-        }
-
-        /* De Hexagon Shape */
-        .hexagon-wrapper {
             position: relative;
-            width: 100px;
-            height: 100px;
-            margin-bottom: 30px;
-            opacity: 0;
-            transform: scale(0.5) rotate(-180deg);
-            transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+            padding: 80px;
+            text-align: center;
+            transition: all 0.8s ease;
         }
 
-        .hexagon-wrapper.show {
-            opacity: 1;
-            transform: scale(1) rotate(0deg);
+        /* Geanimeerde Hexagon */
+        .hex-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 40px;
+            filter: drop-shadow(0 0 20px rgba(249, 115, 22, 0.4));
+            transform: scale(0);
+            animation: popIn 0.8s cubic-bezier(0.17, 0.89, 0.32, 1.49) forwards;
         }
 
         .hexagon {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             background: var(--primary);
             clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            animation: glow 3s infinite alternate;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 60px; font-weight: 900; color: white;
+            position: relative; z-index: 2;
         }
 
-        .hexagon::after {
-            content: 'S';
-            color: white;
-            font-size: 50px;
-            font-weight: 900;
-        }
-
-        /* De bewegende blauwe rand */
-        .hexagon-border {
+        /* Draaiende Ring */
+        .hex-ring {
             position: absolute;
-            top: -6px; left: -6px; right: -6px; bottom: -6px;
-            border: 2px solid var(--secondary);
+            inset: -10px;
+            border: 3px solid var(--secondary);
             clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-            animation: rotate-border 4s linear infinite;
+            animation: spin 4s linear infinite;
+            opacity: 0.6;
         }
 
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 5px var(--primary)); }
-            to { filter: drop-shadow(0 0 25px var(--primary)); }
-        }
-
-        @keyframes rotate-border {
-            0% { transform: rotate(0deg); opacity: 0.5; }
-            50% { opacity: 1; }
-            100% { transform: rotate(360deg); opacity: 0.5; }
-        }
-
+        /* Typewriter met Scanline */
         #intro-text {
-            font-size: clamp(1.5rem, 5vw, 3rem);
+            font-size: 3.5rem;
             font-weight: 900;
-            letter-spacing: -1px;
-            font-family: 'Inter', sans-serif;
+            letter-spacing: -2px;
+            text-transform: uppercase;
         }
 
-        .highlight { color: var(--primary); }
+        .cursor {
+            display: inline-block;
+            width: 10px; height: 1em;
+            background: var(--primary);
+            margin-left: 5px;
+            animation: blink 0.8s infinite;
+        }
 
-        /* Zoom-out effect */
-        .zoom-out { transform: scale(0) translateY(-100px); opacity: 0; }
+        /* Animatie Keyframes */
+        @keyframes popIn { to { transform: scale(1); } }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes blink { 50% { opacity: 0; } }
 
-        /* --- MAIN WEBSITE --- */
+        /* EXIT ANIMATIE */
+        .exit-active {
+            transform: scale(4) rotate(5deg);
+            filter: blur(20px);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* --- WEBSITE CONTENT --- */
         #main-content {
             opacity: 0;
-            transition: opacity 1.5s ease;
+            transform: translateY(20px);
+            transition: all 1s ease;
         }
 
-        .container { max-width: 1100px; margin: auto; padding: 40px 20px; }
+        .show-content { opacity: 1 !important; transform: translateY(0) !important; }
 
-        header { text-align: center; padding: 80px 0; }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 35px;
-            border-radius: 25px;
+        .container { max-width: 1100px; margin: auto; padding: 50px 20px; }
+        .card { 
+            background: var(--card-bg); 
+            padding: 40px; 
+            border-radius: 30px; 
             border: 1px solid #1e293b;
-            transition: 0.4s ease;
+            transition: 0.4s;
         }
-
-        .card:hover { 
-            border-color: var(--secondary); 
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .card h3 { color: var(--primary); margin-top: 0; font-size: 1.5rem; }
-        .card p { color: #94a3b8; line-height: 1.6; }
-
-        /* --- FORMULIER --- */
-        .form-section {
-            background: #ffffff;
-            color: #020617;
-            padding: 50px;
-            border-radius: 35px;
-            margin: 80px 0;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
-        }
-
-        .form-section h2 { font-weight: 900; margin-top: 0; }
-
-        input, select, textarea {
-            width: 100%; padding: 18px; margin: 10px 0 25px 0;
-            border: 2px solid #e2e8f0; border-radius: 15px; font-family: inherit;
-            box-sizing: border-box;
-        }
+        .card:hover { border-color: var(--primary); box-shadow: 0 0 30px rgba(249, 115, 22, 0.1); }
 
         .btn-send {
-            background: var(--bg);
-            color: white;
-            border: none;
-            padding: 22px;
-            width: 100%;
-            font-weight: 900;
-            font-size: 1.2rem;
-            cursor: pointer;
-            border-radius: 15px;
-            transition: 0.3s;
+            background: linear-gradient(90deg, var(--primary), #ea580c);
+            color: white; border: none; padding: 20px; width: 100%;
+            font-weight: 900; border-radius: 15px; cursor: pointer;
+            text-transform: uppercase; letter-spacing: 1px;
         }
-
-        .btn-send:hover { background: var(--primary); transform: scale(1.02); }
-
-        footer { text-align: center; padding: 50px; color: #475569; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
     <div id="intro-overlay">
         <div id="intro-box">
-            <div class="hexagon-wrapper" id="hex-wrap">
-                <div class="hexagon-border"></div>
-                <div class="hexagon"></div>
+            <div class="hex-container">
+                <div class="hex-ring"></div>
+                <div class="hexagon">S</div>
             </div>
-            <div id="intro-text"></div>
+            <div id="intro-text"></div><span class="cursor"></span>
         </div>
     </div>
 
     <div id="main-content">
         <div class="container">
-            <header>
-                <h1 style="font-size: clamp(3rem, 10vw, 5rem); margin: 0; font-weight: 900;">SOLDER<span class="highlight">SOLUTIONS</span></h1>
-                <p style="color: var(--secondary); letter-spacing: 4px; font-family: 'JetBrains Mono';">LIMITLESS HARDWARE REPAIR LAB</p>
+            <header style="text-align: center; margin-bottom: 80px;">
+                <h1 style="font-size: 4rem; font-weight: 900; margin: 0;">SOLDER<span style="color:var(--primary)">SOLUTIONS</span></h1>
+                <p style="color: var(--secondary); font-family: 'JetBrains Mono'; letter-spacing: 5px;">HARDWARE REPAIR LAB</p>
             </header>
 
-            <div class="grid">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
                 <div class="card">
-                    <h3>🕹️ Gaming & Controllers</h3>
-                    <p>Stickdrift herstel en Hall-Effect upgrades. Uw controller weer als nieuw, zonder dode zones.</p>
+                    <h3 style="color:var(--primary)">🕹️ Controller Lab</h3>
+                    <p>Expert in stickdrift, Hall-Effect sensors en custom mods voor PS5 & Xbox.</p>
                 </div>
                 <div class="card">
-                    <h3>🔌 High-End Poorten</h3>
-                    <p>HDMI 2.1, USB-C en oplaadpunten. Handmatig gesoldeerd onder de microscoop voor consoles en PC's.</p>
+                    <h3 style="color:var(--primary)">🔌 Micro-Solderen</h3>
+                    <p>HDMI 2.1 poorten, FPC connectoren en SMD componenten herstel.</p>
                 </div>
                 <div class="card">
-                    <h3>🛠️ Custom Solutions</h3>
-                    <p>Arduino, drones, vintage audio of PC-componenten. Wij vinden een oplossing voor elk hardware probleem.</p>
+                    <h3 style="color:var(--primary)">🤖 Custom Projects</h3>
+                    <p>Arduino development en hardware prototyping op maat.</p>
                 </div>
             </div>
 
-            <div class="form-section">
-                <h2>Start een Aanvraag</h2>
-                <p>Omschrijf je probleem en ik neem binnen 24 uur contact met je op.</p>
-                
+            <div style="background: white; color: black; padding: 50px; border-radius: 40px; margin-top: 80px;">
+                <h2 style="font-weight: 900;">Start een reparatie</h2>
                 <form action="https://formspree.io/f/jouw-code-hier" method="POST">
-                    <label>Volledige Naam:</label>
-                    <input type="text" name="naam" required placeholder="Jouw naam">
-
-                    <label>Service Type:</label>
-                    <select name="service">
-                        <option value="stickdrift">Stickdrift Reparatie</option>
-                        <option value="hdmi">HDMI / Poort Herstel</option>
-                        <option value="arduino">Arduino / Custom Project</option>
-                        <option value="overig">Iets anders...</option>
-                    </select>
-
-                    <label>Wat is het probleem?</label>
-                    <textarea name="bericht" rows="5" required placeholder="Vertel me alles over je apparaat..."></textarea>
-
-                    <label>Jouw Emailadres:</label>
-                    <input type="email" name="email" required placeholder="naam@voorbeeld.nl">
-
-                    <button type="submit" class="btn-send">VERSTUUR NAAR HET LAB</button>
+                    <input type="text" name="naam" placeholder="Naam" required style="width:100%; padding:15px; margin-bottom:20px; border-radius:10px; border:1px solid #ddd;">
+                    <input type="email" name="email" placeholder="Email" required style="width:100%; padding:15px; margin-bottom:20px; border-radius:10px; border:1px solid #ddd;">
+                    <textarea name="bericht" placeholder="Wat moet er gemaakt worden?" style="width:100%; padding:15px; margin-bottom:20px; border-radius:10px; border:1px solid #ddd;" rows="4"></textarea>
+                    <button type="submit" class="btn-send">Verstuur Aanvraag</button>
                 </form>
             </div>
         </div>
-
-        <footer>
-            <p>&copy; 2026 SolderSolutions | Elke verbinding met precisie gesoldeerd.</p>
-        </footer>
     </div>
 
     <script>
-        const hexWrap = document.getElementById('hex-wrap');
-        const introText = "SOLDER SOLUTIONS";
-        const introElement = document.getElementById('intro-text');
+        const text = "Solder Solutions";
+        const target = document.getElementById('intro-text');
         const overlay = document.getElementById('intro-overlay');
-        const introBox = document.getElementById('intro-box');
         const content = document.getElementById('main-content');
         let i = 0;
 
-        // Start de animatie reeks
-        window.onload = () => {
-            // 1. Laat hexagon verschijnen met draai
-            setTimeout(() => {
-                hexWrap.classList.add('show');
-            }, 400);
-
-            // 2. Start typen na 1.5 seconde
-            setTimeout(typeWriter, 1500);
-        };
-
-        function typeWriter() {
-            if (i < introText.length) {
-                if (i >= 7) {
-                    introElement.innerHTML += `<span class="highlight">${introText.charAt(i)}</span>`;
-                } else {
-                    introElement.innerHTML += introText.charAt(i);
-                }
+        function type() {
+            if (i < text.length) {
+                target.innerHTML += text.charAt(i);
                 i++;
-                setTimeout(typeWriter, 100); 
+                setTimeout(type, 100);
             } else {
-                // 3. Wacht even en zoom dan uit
-                setTimeout(startZoomOut, 1500);
+                setTimeout(finish, 1200);
             }
         }
 
-        function startZoomOut() {
-            introBox.classList.add('zoom-out');
-            overlay.style.background = "transparent";
-            content.style.opacity = "1";
+        function finish() {
+            // Voeg de vette exit animatie toe
+            overlay.classList.add('exit-active');
+            content.classList.add('show-content');
             
-            // Verwijder de overlay volledig na de animatie
             setTimeout(() => {
-                overlay.style.display = "none";
-            }, 1200);
+                overlay.style.display = 'none';
+            }, 1000);
         }
-    </script>
 
+        // Start na een kleine pauze
+        setTimeout(type, 1200);
+    </script>
 </body>
 </html>
