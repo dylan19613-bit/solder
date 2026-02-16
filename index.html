@@ -3,231 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SolderSolutions | Premium Tech Lab</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <title>SolderSolutions | Snelle Tech Reparaties</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg: #020617;
-            --primary: #f97316;
-            --secondary: #0ea5e9;
-            --text: #f8fafc;
-            --card-bg: #0f172a;
+            --bg-light: #f8fafc;
+            --primary: #f97316; /* De Solder Oranje */
+            --dark: #0f172a;
+            --blue: #0284c7;
+            --white: #ffffff;
         }
 
         body, html {
             margin: 0; padding: 0;
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--dark);
+            font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        /* --- INTRO ANIMATIE --- */
+        /* --- INTRO (Blijft High-Tech) --- */
         #intro-overlay {
             position: fixed; inset: 0;
-            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+            background: #020617;
             display: flex; justify-content: center; align-items: center;
             z-index: 9999;
             transition: all 1s cubic-bezier(0.7, 0, 0.3, 1);
         }
 
         .hex-container {
-            position: relative; width: 120px; height: 120px; margin: 0 auto 30px;
-            transform: scale(0); animation: popIn 0.8s cubic-bezier(0.17, 0.89, 0.32, 1.49) forwards;
+            position: relative; width: 100px; height: 100px; margin-bottom: 20px;
+            transform: scale(0); animation: popIn 0.8s forwards;
         }
 
         .hexagon {
             width: 100%; height: 100%; background: var(--primary);
             clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
             display: flex; justify-content: center; align-items: center;
-            font-size: 60px; font-weight: 900; color: white; position: relative; z-index: 2;
+            font-size: 50px; font-weight: 800; color: white;
         }
-
-        .hex-ring {
-            position: absolute; inset: -10px; border: 3px solid var(--secondary);
-            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-            animation: spin 4s linear infinite; opacity: 0.6;
-        }
-
-        #intro-text { font-size: 3rem; font-weight: 900; letter-spacing: -2px; text-align: center;}
 
         @keyframes popIn { to { transform: scale(1); } }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .exit-active { transform: translateY(-100%); opacity: 0; }
 
-        .exit-active { transform: scale(5); filter: blur(30px); opacity: 0; pointer-events: none; }
+        /* --- NAVIGATION --- */
+        nav {
+            background: var(--white);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky; top: 0; z-index: 100;
+        }
 
-        /* --- WEBSITE CONTENT --- */
-        #main-content { opacity: 0; transform: translateY(30px); transition: all 1.2s ease; }
-        .show-content { opacity: 1 !important; transform: translateY(0) !important; }
+        .logo { font-weight: 800; font-size: 1.5rem; color: var(--dark); }
+        .logo span { color: var(--primary); }
 
-        .container { max-width: 1100px; margin: auto; padding: 60px 20px; }
+        /* --- HERO SECTION (Zoals Today2Repair) --- */
+        .hero {
+            background: var(--dark);
+            color: var(--white);
+            padding: 100px 20px;
+            text-align: center;
+        }
 
-        /* SERVICE CARDS */
+        .hero h1 { font-size: 3.5rem; margin: 0; font-weight: 800; line-height: 1.1; }
+        .hero p { opacity: 0.8; font-size: 1.2rem; margin: 20px 0 40px; }
+
+        /* --- SERVICES GRID --- */
+        .container { max-width: 1200px; margin: auto; padding: 60px 20px; }
+        
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.5rem; font-weight: 800; margin: 0; }
+        .section-title .bar { width: 60px; height: 5px; background: var(--primary); margin: 15px auto; }
+
         .service-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px; margin-top: 50px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 30px;
-            border: 1px solid #1e293b;
-            transition: 0.4s;
-        }
-
-        .card:hover { border-color: var(--primary); transform: translateY(-10px); }
-
-        /* CONTACT INFO GEDEELTE */
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 80px;
-        }
-
-        .contact-details {
-            display: flex;
-            flex-direction: column;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
 
-        .contact-item {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 20px;
-            text-decoration: none;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border: 1px solid #1e293b;
+        .service-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
             transition: 0.3s;
         }
 
-        .contact-item:hover {
-            border-color: var(--secondary);
-            background: #1e293b;
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
         }
 
-        .contact-item .icon { font-size: 1.5rem; }
-
-        .form-container {
-            background: white;
-            color: black;
-            padding: 40px;
-            border-radius: 30px;
+        .icon-circle {
+            width: 80px; height: 80px; background: #fff7ed;
+            color: var(--primary); border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            margin: 0 auto 25px; font-size: 2rem;
         }
 
-        input, select, textarea {
+        /* --- CONTACT & INFO --- */
+        .contact-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px; background: var(--white);
+            padding: 60px; border-radius: 20px; margin-top: 50px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .info-list div { margin-bottom: 25px; }
+        .info-list h4 { margin: 0; color: var(--primary); font-size: 1.1rem; }
+        .info-list a { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 1.2rem; }
+
+        .form-box input, .form-box select, .form-box textarea {
             width: 100%; padding: 15px; margin: 10px 0 20px 0;
-            border: 2px solid #e2e8f0; border-radius: 12px; font-family: inherit;
+            background: #f1f5f9; border: none; border-radius: 10px; font-family: inherit;
         }
 
-        .btn-send {
-            background: var(--bg); color: white; border: none; padding: 20px;
-            width: 100%; font-weight: 900; border-radius: 12px; cursor: pointer;
+        .btn-main {
+            background: var(--primary); color: white; border: none;
+            padding: 20px 40px; border-radius: 10px; font-weight: 700;
+            cursor: pointer; width: 100%; font-size: 1rem;
         }
 
-        footer { text-align: center; padding: 40px; opacity: 0.5; font-size: 0.8rem; }
-
+        footer { text-align: center; padding: 40px; background: var(--dark); color: white; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
     <div id="intro-overlay">
         <div id="intro-box">
-            <div class="hex-container">
-                <div class="hex-ring"></div>
+            <div class="hex-container" id="hex">
                 <div class="hexagon">S</div>
             </div>
-            <div id="intro-text"></div>
+            <div id="intro-text" style="color:white; font-size: 2rem; font-weight: 800;"></div>
         </div>
     </div>
 
-    <div id="main-content">
-        <div class="container">
-            <header style="text-align: center; margin-bottom: 80px;">
-                <h1 style="font-size: 4rem; font-weight: 900; margin: 0;">SOLDER<span style="color:var(--primary)">SOLUTIONS</span></h1>
-                <p style="color: var(--secondary); letter-spacing: 4px; font-family: 'JetBrains Mono';">HARDWARE REPAIR & ROBOTICS LAB</p>
-            </header>
+    <nav>
+        <div class="logo">SOLDER<span>SOLUTIONS</span></div>
+        <div style="font-weight: 600; font-size: 0.9rem;">📍 Lunteren, NL</div>
+    </nav>
 
-            <div class="service-grid">
-                <div class="card">
-                    <h3>🔌 HDMI & Port Repair</h3>
-                    <p>PS5, Xbox, Switch en PC poorten. Micro-solderen met uiterste precisie.</p>
-                </div>
-                <div class="card">
-                    <h3>🤖 Arduino Projecten</h3>
-                    <p>Hulp bij code, sensoren en het bouwen van jouw eigen robots of smart home tech.</p>
-                </div>
-                <div class="card">
-                    <h3>🎮 Controller Mods</h3>
-                    <p>Stickdrift herstel en Hall-Effect upgrades. Nooit meer last van drift.</p>
-                </div>
+    <section class="hero">
+        <h1>Tech Reparatie Lab</h1>
+        <p>Vakkundig herstel van jouw kostbare hardware. Vandaag gebracht, morgen gefixed.</p>
+        <a href="#aanvraag" style="background:var(--primary); color:white; padding:15px 30px; text-decoration:none; border-radius:8px; font-weight:700;">REPARATIE AANVRAGEN</a>
+    </section>
+
+    <div class="container">
+        <div class="section-title">
+            <h2>Onze Specialisaties</h2>
+            <div class="bar"></div>
+        </div>
+
+        <div class="service-grid">
+            <div class="service-card">
+                <div class="icon-circle">🔌</div>
+                <h3>HDMI & Poorten</h3>
+                <p>PS5, Xbox en Switch poorten vervangen we met precisie-apparatuur.</p>
             </div>
-
-            <div class="contact-wrapper">
-                <div class="contact-details">
-                    <h2 style="font-size: 2.5rem; font-weight: 900;">Direct Contact</h2>
-                    <p>Liever bellen of appen? Je kunt me hier bereiken:</p>
-                    
-                    <a href="tel:+31612345678" class="contact-item">
-                        <span class="icon">📞</span>
-                        <div>
-                            <strong>Bel ons</strong><br>
-                            <span>+31 6 51086349</span>
-                        </div>
-                    </a>
-
-                    <a href="https://wa.me/31651086349" target="_blank" class="contact-item">
-                        <span class="icon">💬</span>
-                        <div>
-                            <strong>WhatsApp</strong><br>
-                            <span>Stuur een berichtje</span>
-                        </div>
-                    </a>
-
-                    <div class="contact-item">
-                        <span class="icon">📍</span>
-                        <div>
-                            <strong>Locatie</strong><br>
-                            <span>Lunteren, Nederland</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-container">
-                    <h3 style="margin-top: 0;">Stuur een mail</h3>
-                    <form action="https://formspree.io/f/jouw-code-hier" method="POST">
-                        <input type="text" name="naam" placeholder="Naam" required>
-                        <select name="onderwerp">
-                            <option value="hdmi">HDMI Reparatie</option>
-                            <option value="arduino">Arduino Hulp</option>
-                            <option value="controller">Controller / Drift</option>
-                            <option value="anders">Iets anders</option>
-                        </select>
-                        <textarea name="bericht" placeholder="Wat is je vraag?" rows="4" required></textarea>
-                        <input type="email" name="email" placeholder="Je e-mail" required>
-                        <button type="submit" class="btn-send">VERSTUUR MAIL</button>
-                    </form>
-                </div>
+            <div class="service-card">
+                <div class="icon-circle">🤖</div>
+                <h3>Arduino & Code</h3>
+                <p>Hulp bij hardware projecten, sensoren en custom PCB debugging.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon-circle">🎮</div>
+                <h3>Controller Drift</h3>
+                <p>Hall-Effect sensoren inbouwen zodat je nooit meer last hebt van stickdrift.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon-circle">⚡</div>
+                <h3>Andere Tech</h3>
+                <p>Drones, audio of PC-onderdelen. Als er stroom doorheen gaat, kunnen we het fixen.</p>
             </div>
         </div>
 
-        <footer>
-            &copy; 2026 SOLDER SOLUTIONS | Lunteren, NL
-        </footer>
+        <div class="contact-section" id="aanvraag">
+            <div class="info-list">
+                <h2>Contactgegevens</h2>
+                <div class="bar" style="margin-left: 0;"></div>
+                <p>Heb je een vraag? Neem direct contact op met onze specialist.</p>
+                
+                <div>
+                    <h4>Bellen of WhatsApp</h4>
+                    <a href="https://wa.me/31651086349">+31 6 51086349</a>
+                </div>
+                <div>
+                    <h4>Regio</h4>
+                    <p>Lunteren / Ede / Barneveld</p>
+                </div>
+            </div>
+
+            <div class="form-box">
+                <form action="https://formspree.io/f/jouw-code-hier" method="POST">
+                    <input type="text" name="naam" placeholder="Je Naam" required>
+                    <input type="email" name="email" placeholder="Je E-mail" required>
+                    <select name="service">
+                        <option value="hdmi">HDMI Reparatie</option>
+                        <option value="arduino">Arduino Project</option>
+                        <option value="controller">Controller Drift</option>
+                        <option value="anders">Iets anders</option>
+                    </select>
+                    <textarea name="bericht" placeholder="Wat is er defect?" rows="4" required></textarea>
+                    <button type="submit" class="btn-main">VERSTUUR AANVRAAG</button>
+                </form>
+            </div>
+        </div>
     </div>
+
+    <footer>
+        &copy; 2026 SolderSolutions | High-End Repair Lab | Lunteren
+    </footer>
 
     <script>
         const text = "Solder Solutions";
         const target = document.getElementById('intro-text');
         const overlay = document.getElementById('intro-overlay');
-        const content = document.getElementById('main-content');
+        const hex = document.getElementById('hex');
         let i = 0;
 
         function type() {
@@ -236,19 +236,15 @@
                 i++;
                 setTimeout(type, 100);
             } else {
-                setTimeout(finish, 1200);
+                setTimeout(() => {
+                    overlay.classList.add('exit-active');
+                }, 1000);
             }
-        }
-
-        function finish() {
-            overlay.classList.add('exit-active');
-            content.classList.add('show-content');
-            setTimeout(() => { overlay.style.display = 'none'; }, 1000);
         }
 
         window.onload = () => {
             setTimeout(() => {
-                document.querySelector('.hex-container').style.transform = 'scale(1)';
+                hex.style.transform = 'scale(1)';
                 type();
             }, 500);
         };
