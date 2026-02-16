@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SolderSolutions | Poort Reparatie & Tech Lab</title>
+    <title>SolderSolutions | Echte Reviews & Tech Repair</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
@@ -23,11 +23,11 @@
             scroll-behavior: smooth;
         }
 
-        /* --- INTRO ANIMATIE --- */
+        /* --- INTRO --- */
         #intro-overlay {
             position: fixed; inset: 0; background: #020617;
             display: flex; justify-content: center; align-items: center;
-            z-index: 9999; transition: 1s cubic-bezier(0.7, 0, 0.3, 1);
+            z-index: 9999; transition: 1s ease;
         }
         .hexagon {
             width: 80px; height: 80px; background: var(--primary);
@@ -39,7 +39,6 @@
         @keyframes popIn { to { transform: scale(1); } }
         .exit-active { transform: translateY(-100%); opacity: 0; }
 
-        /* --- NAV & HERO --- */
         nav {
             background: var(--white); padding: 15px 5%;
             display: flex; justify-content: space-between; align-items: center;
@@ -48,53 +47,46 @@
         .logo { font-weight: 800; font-size: 1.5rem; text-decoration: none; color: var(--dark); }
         .logo span { color: var(--primary); }
 
-        .hero {
-            background: var(--dark);
-            color: var(--white); padding: 100px 20px; text-align: center;
-        }
-        .hero h1 { font-size: 3rem; font-weight: 800; margin: 0; }
-        .hero p { opacity: 0.8; margin: 20px 0; }
-
         .container { max-width: 1200px; margin: auto; padding: 60px 20px; }
         .section-title { text-align: center; margin-bottom: 50px; }
         .bar { width: 50px; height: 4px; background: var(--primary); margin: 15px auto; }
 
-        /* --- STAP 1: DIENSTEN (ALLE POORTEN) --- */
+        /* --- STAP 1: DIENSTEN --- */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         .card { 
             background: var(--white); padding: 40px; border-radius: 20px; 
             border: 1px solid #e2e8f0; transition: 0.3s; text-align: center;
         }
-        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
         .price-tag { font-size: 2.2rem; font-weight: 800; color: var(--primary); display: block; margin: 15px 0; }
 
-        /* --- STAP 2: REVIEWS --- */
+        /* --- STAP 2: ECHTE REVIEWS --- */
         .review-section { background: var(--light); padding: 80px 20px; border-radius: 50px; margin: 40px 0; }
-        .review-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .review-card { background: white; padding: 30px; border-radius: 20px; border: 1px solid #e2e8f0; }
         .stars { color: var(--gold); margin-bottom: 10px; }
 
-        /* --- STAP 3: GARANTIE --- */
-        .garantie-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
-        .garantie-card { text-align: center; padding: 20px; }
-        .g-icon { font-size: 3rem; margin-bottom: 15px; display: block; }
-
-        /* --- CONTACT --- */
-        .contact-box {
-            background: var(--dark); color: white; padding: 60px; border-radius: 40px; margin-top: 60px;
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;
+        /* Review Formulier */
+        .review-form {
+            background: #fff; padding: 30px; border-radius: 20px; 
+            margin-top: 40px; border: 2px dashed var(--primary);
         }
+
+        /* --- STAP 3: GARANTIE --- */
+        .garantie-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .garantie-card { text-align: center; padding: 20px; }
+
+        /* FORM STYLING */
         input, select, textarea {
-            width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: none; font-family: inherit;
+            width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: 1px solid #ddd; font-family: inherit; box-sizing: border-box;
         }
         .btn { background: var(--primary); color: white; border: none; padding: 18px; width: 100%; border-radius: 10px; font-weight: 700; cursor: pointer; }
 
-        footer { text-align: center; padding: 40px; opacity: 0.6; font-size: 0.8rem; }
+        footer { text-align: center; padding: 40px; opacity: 0.6; }
     </style>
 </head>
 <body>
 
     <div id="intro-overlay">
-        <div id="intro-box" style="text-align: center;">
+        <div id="intro-box">
             <div class="hexagon">S</div>
             <div id="intro-text" style="color:white; font-size: 1.5rem; font-weight: 800; margin-top: 20px;"></div>
         </div>
@@ -102,67 +94,64 @@
 
     <nav>
         <a href="#" class="logo">SOLDER<span>SOLUTIONS</span></a>
-        <div style="font-weight: 600;">Lunteren, NL</div>
+        <a href="#review-form" style="font-size: 0.8rem; color: var(--primary); font-weight: 700; text-decoration: none;">SCHRIJF EEN REVIEW</a>
     </nav>
-
-    <section class="hero">
-        <h1>High-End Micro-Solderen</h1>
-        <p>Expert in poort reparaties voor consoles, laptops en controllers.</p>
-    </section>
 
     <div class="container">
         
         <div class="section-title">
             <h2>Poort Reparaties</h2>
             <div class="bar"></div>
-            <p>Wij fixen alle poorten: HDMI, USB-C, Audio, Oplaadpoorten en meer.</p>
+            <p>Alle poorten vanaf €39,95</p>
         </div>
 
         <div class="grid">
             <div class="card">
-                <span style="font-size: 3rem;">🔌</span>
-                <h3>Alle Poorten</h3>
-                <p>HDMI 2.1, USB-C, AUX of oplaadpunten voor elk device.</p>
+                <h3>🔌 HDMI & Poorten</h3>
                 <span class="price-tag">v.a. €39,95</span>
-                <p style="font-size: 0.8rem; color: #64748b;">Inclusief dieptereiniging</p>
+                <p>PS5, Xbox, Switch & Laptops.</p>
             </div>
             <div class="card">
-                <span style="font-size: 3rem;">🎮</span>
-                <h3>Controller Lab</h3>
-                <p>Stickdrift herstel met Hall-Effect sensoren.</p>
+                <h3>🎮 Controller Herstel</h3>
                 <span class="price-tag">€29,95</span>
-                <p style="font-size: 0.8rem; color: #64748b;">Nooit meer drift</p>
+                <p>Met levenslange Hall-Effect sensoren.</p>
             </div>
             <div class="card">
-                <span style="font-size: 3rem;">🤖</span>
-                <h3>Arduino & Tech</h3>
-                <p>Maatwerk projecten en PCB reparatie.</p>
+                <h3>🤖 Arduino Lab</h3>
                 <span class="price-tag">v.a. €24,95</span>
-                <p style="font-size: 0.8rem; color: #64748b;">Per project</p>
+                <p>Custom code & project hulp.</p>
             </div>
         </div>
 
         <div class="review-section">
             <div class="section-title">
-                <h2>Klanten over SolderSolutions</h2>
+                <h2>Klantbeoordelingen</h2>
                 <div class="bar"></div>
+                <p>Wat onze klanten echt vinden van SolderSolutions.</p>
             </div>
-            <div class="grid">
+
+            <div class="grid" id="review-container">
                 <div class="review-card">
                     <div class="stars">★★★★★</div>
-                    <p>"Mijn HDMI poort was compleet afgebroken. Snel en vakkundig gemaakt!"</p>
-                    <strong>- Tim, Ede</strong>
+                    <p>"Echt vakwerk in Lunteren. Mijn HDMI poort werkt weer perfect."</p>
+                    <strong>- Ervaring van klant</strong>
                 </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Eindelijk iemand die ook Arduino projecten snapt. Heeft me super geholpen."</p>
-                    <strong>- Julian, Lunteren</strong>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Top service voor mijn PS5 controller. Werkt weer als nieuw."</p>
-                    <strong>- Mike, Barneveld</strong>
-                </div>
+            </div>
+
+            <div class="review-form" id="review-form">
+                <h3>Zelf een review achterlaten?</h3>
+                <p>Ben je geholpen door SolderSolutions? Laat anderen weten hoe het ging!</p>
+                <form action="https://formspree.io/f/jouw-code-hier" method="POST">
+                    <input type="text" name="naam" placeholder="Jouw Naam" required>
+                    <select name="sterren">
+                        <option value="5">★★★★★ (5 Sterren)</option>
+                        <option value="4">★★★★☆ (4 Sterren)</option>
+                        <option value="3">★★★☆☆ (3 Sterren)</option>
+                    </select>
+                    <textarea name="review-tekst" placeholder="Wat vond je van de reparatie?" rows="3" required></textarea>
+                    <button type="submit" class="btn">REVIEW VERSTUREN</button>
+                </form>
+                <p style="font-size: 0.7rem; margin-top: 10px; color: #666;">*Na controle verschijnt je review op de website.</p>
             </div>
         </div>
 
@@ -172,46 +161,21 @@
         </div>
         <div class="garantie-grid">
             <div class="garantie-card">
-                <span class="g-icon">🛡️</span>
-                <h4>6 Maanden Garantie</h4>
-                <p>Op elke reparatie krijg je bij ons standaard een half jaar volledige garantie.</p>
+                <span style="font-size: 3rem;">🛡️</span>
+                <h4>6 Maanden</h4>
+                <p>Standaard garantie op alle hardware reparaties.</p>
             </div>
             <div class="garantie-card">
-                <span class="g-icon">🔍</span>
+                <span style="font-size: 3rem;">🔍</span>
                 <h4>No Fix, No Fee</h4>
-                <p>Kunnen wij het niet maken? Dan betaal je helemaal niets. Geen risico.</p>
+                <p>Wij rekenen geen kosten als de reparatie niet lukt.</p>
             </div>
-            <div class="garantie-card">
-                <span class="g-icon">⚡</span>
-                <h4>Snelle Service</h4>
-                <p>De meeste reparaties zijn binnen 24 tot 48 uur volledig afgerond.</p>
-            </div>
-        </div>
-
-        <div class="contact-box" id="aanvraag">
-            <div>
-                <h2>Start een reparatie</h2>
-                <p>Stuur ons een berichtje en we helpen je direct verder.</p>
-                <p><strong>WhatsApp:</strong> +31 6 12345678</p>
-                <p><strong>Locatie:</strong> Lunteren, Gelderland</p>
-            </div>
-            <form action="https://formspree.io/f/jouw-code-hier" method="POST">
-                <input type="text" name="naam" placeholder="Je Naam" required>
-                <select name="poort">
-                    <option>HDMI Reparatie</option>
-                    <option>USB-C / Oplaadpoort</option>
-                    <option>Controller / Stickdrift</option>
-                    <option>Arduino / Overig</option>
-                </select>
-                <textarea name="bericht" placeholder="Wat is het probleem?" rows="4" required></textarea>
-                <button type="submit" class="btn">VERSTUUR AANVRAAG</button>
-            </form>
         </div>
 
     </div>
 
     <footer>
-        &copy; 2026 SolderSolutions | Lunteren | High-End Tech Repair
+        &copy; 2026 SolderSolutions | Lunteren
     </footer>
 
     <script>
