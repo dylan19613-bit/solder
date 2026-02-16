@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SolderSolutions | Echte Reviews & Tech Repair</title>
+    <title>SolderSolutions | Poort Reparatie & Tech Lab</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
@@ -23,11 +23,11 @@
             scroll-behavior: smooth;
         }
 
-        /* --- INTRO --- */
+        /* --- INTRO ANIMATIE --- */
         #intro-overlay {
             position: fixed; inset: 0; background: #020617;
             display: flex; justify-content: center; align-items: center;
-            z-index: 9999; transition: 1s ease;
+            z-index: 9999; transition: 1s cubic-bezier(0.7, 0, 0.3, 1);
         }
         .hexagon {
             width: 80px; height: 80px; background: var(--primary);
@@ -39,6 +39,7 @@
         @keyframes popIn { to { transform: scale(1); } }
         .exit-active { transform: translateY(-100%); opacity: 0; }
 
+        /* --- NAV & HERO --- */
         nav {
             background: var(--white); padding: 15px 5%;
             display: flex; justify-content: space-between; align-items: center;
@@ -47,32 +48,39 @@
         .logo { font-weight: 800; font-size: 1.5rem; text-decoration: none; color: var(--dark); }
         .logo span { color: var(--primary); }
 
+        .hero {
+            background: var(--dark); color: var(--white); 
+            padding: 100px 20px; text-align: center;
+        }
+        .hero h1 { font-size: 3rem; font-weight: 800; margin: 0; }
+
         .container { max-width: 1200px; margin: auto; padding: 60px 20px; }
         .section-title { text-align: center; margin-bottom: 50px; }
         .bar { width: 50px; height: 4px; background: var(--primary); margin: 15px auto; }
 
-        /* --- STAP 1: DIENSTEN --- */
+        /* --- DIENSTEN --- */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         .card { 
             background: var(--white); padding: 40px; border-radius: 20px; 
             border: 1px solid #e2e8f0; transition: 0.3s; text-align: center;
         }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
         .price-tag { font-size: 2.2rem; font-weight: 800; color: var(--primary); display: block; margin: 15px 0; }
 
-        /* --- STAP 2: ECHTE REVIEWS --- */
+        /* --- REVIEWS (LEEG BIJ START) --- */
         .review-section { background: var(--light); padding: 80px 20px; border-radius: 50px; margin: 40px 0; }
         .review-card { background: white; padding: 30px; border-radius: 20px; border: 1px solid #e2e8f0; }
         .stars { color: var(--gold); margin-bottom: 10px; }
+        
+        .no-reviews { text-align: center; color: #94a3b8; font-style: italic; grid-column: 1 / -1; }
 
-        /* Review Formulier */
         .review-form {
             background: #fff; padding: 30px; border-radius: 20px; 
             margin-top: 40px; border: 2px dashed var(--primary);
         }
 
-        /* --- STAP 3: GARANTIE --- */
-        .garantie-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .garantie-card { text-align: center; padding: 20px; }
+        /* --- GARANTIE --- */
+        .garantie-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center; }
 
         /* FORM STYLING */
         input, select, textarea {
@@ -94,82 +102,66 @@
 
     <nav>
         <a href="#" class="logo">SOLDER<span>SOLUTIONS</span></a>
-        <a href="#review-form" style="font-size: 0.8rem; color: var(--primary); font-weight: 700; text-decoration: none;">SCHRIJF EEN REVIEW</a>
+        <div style="font-weight: 600;">Lunteren, NL</div>
     </nav>
+
+    <section class="hero">
+        <h1>High-End Poort Reparatie</h1>
+        <p>Expert herstel vanaf €39,95</p>
+    </section>
 
     <div class="container">
         
         <div class="section-title">
-            <h2>Poort Reparaties</h2>
+            <h2>Diensten</h2>
             <div class="bar"></div>
-            <p>Alle poorten vanaf €39,95</p>
         </div>
-
         <div class="grid">
             <div class="card">
-                <h3>🔌 HDMI & Poorten</h3>
+                <h3>🔌 Alle Poorten</h3>
                 <span class="price-tag">v.a. €39,95</span>
-                <p>PS5, Xbox, Switch & Laptops.</p>
+                <p>HDMI, USB-C, Audio & meer.</p>
             </div>
-            <div class="card">
-                <h3>🎮 Controller Herstel</h3>
-                <span class="price-tag">€29,95</span>
-                <p>Met levenslange Hall-Effect sensoren.</p>
             </div>
             <div class="card">
                 <h3>🤖 Arduino Lab</h3>
                 <span class="price-tag">v.a. €24,95</span>
-                <p>Custom code & project hulp.</p>
+                <p>Custom tech projecten.</p>
             </div>
         </div>
 
         <div class="review-section">
             <div class="section-title">
-                <h2>Klantbeoordelingen</h2>
+                <h2>Wat klanten zeggen</h2>
                 <div class="bar"></div>
-                <p>Wat onze klanten echt vinden van SolderSolutions.</p>
             </div>
 
             <div class="grid" id="review-container">
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Echt vakwerk in Lunteren. Mijn HDMI poort werkt weer perfect."</p>
-                    <strong>- Ervaring van klant</strong>
-                </div>
+                <p class="no-reviews">Nog geen reviews. Wees de eerste!</p>
             </div>
 
             <div class="review-form" id="review-form">
-                <h3>Zelf een review achterlaten?</h3>
-                <p>Ben je geholpen door SolderSolutions? Laat anderen weten hoe het ging!</p>
+                <h3>Schrijf een review</h3>
                 <form action="https://formspree.io/f/jouw-code-hier" method="POST">
-                    <input type="text" name="naam" placeholder="Jouw Naam" required>
+                    <input type="text" name="naam" placeholder="Je Naam" required>
                     <select name="sterren">
-                        <option value="5">★★★★★ (5 Sterren)</option>
-                        <option value="4">★★★★☆ (4 Sterren)</option>
-                        <option value="3">★★★☆☆ (3 Sterren)</option>
+                        <option value="5">★★★★★</option>
+                        <option value="4">★★★★☆</option>
                     </select>
-                    <textarea name="review-tekst" placeholder="Wat vond je van de reparatie?" rows="3" required></textarea>
-                    <button type="submit" class="btn">REVIEW VERSTUREN</button>
+                    <textarea name="bericht" placeholder="Jouw ervaring..." rows="3" required></textarea>
+                    <button type="submit" class="btn">VERSTUUR REVIEW</button>
                 </form>
-                <p style="font-size: 0.7rem; margin-top: 10px; color: #666;">*Na controle verschijnt je review op de website.</p>
             </div>
         </div>
 
         <div class="section-title">
-            <h2>Onze Garantie</h2>
+            <h2>Garantie & Zekerheid</h2>
             <div class="bar"></div>
         </div>
         <div class="garantie-grid">
-            <div class="garantie-card">
-                <span style="font-size: 3rem;">🛡️</span>
-                <h4>6 Maanden</h4>
-                <p>Standaard garantie op alle hardware reparaties.</p>
-            </div>
-            <div class="garantie-card">
-                <span style="font-size: 3rem;">🔍</span>
-                <h4>No Fix, No Fee</h4>
-                <p>Wij rekenen geen kosten als de reparatie niet lukt.</p>
-            </div>
+            <div><span style="font-size:3rem;">🛡️</span><h4>6 Maanden Garantie</h4></div>
+            <div><span style="font-size:3rem;">🔍</span><h4>No Fix, No Fee</h4></div>
+            <div><span style="font-size:3rem;">⚡</span><h4>Snelle Service</h4></div>
         </div>
 
     </div>
@@ -183,7 +175,6 @@
         const target = document.getElementById('intro-text');
         const overlay = document.getElementById('intro-overlay');
         let i = 0;
-
         function type() {
             if (i < text.length) {
                 target.innerHTML += text.charAt(i);
